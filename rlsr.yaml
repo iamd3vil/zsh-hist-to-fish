@@ -1,0 +1,23 @@
+releases:
+  - name: "Release to github"
+    dist_folder: "./dist"
+    targets:
+      github:
+        owner: "iamd3vil"
+        repo: "zsh-hist-to-fish"
+    checksum:
+      algorithm: "sha256"
+    builds:
+      - command: "just build-linux"
+        artifact: "target/x86_64-unknown-linux-gnu/release/zsh-hist-to-fish"
+        archive_name: "zsh-hist-to-fish-{{ meta.tag }}-linux-x86_64"
+        name: "Linux build"
+      - command: "just build-macos"
+        artifact: "target/aarch64-apple-darwin/release/zsh-hist-to-fish"
+        archive_name: "zsh-hist-to-fish-{{ meta.tag }}-macos-arm64"
+        name: "MacOS build"
+changelog:
+  format: "github"
+  exclude:
+    - "^doc:"
+    - "^chore:"
